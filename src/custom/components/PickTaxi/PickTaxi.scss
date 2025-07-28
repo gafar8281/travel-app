@@ -1,0 +1,345 @@
+
+$primary-color: #007bff;
+$text-dark: #2c3e50;
+$text-light: #6c757d;
+$border-color: #dee2e6;
+$bg-light: #f8f9fa;
+$card-bg: #ffffff;
+$transition-speed: 0.3s;
+
+
+$mobile-breakpoint: 450px; 
+$tablet-breakpoint: 768px; 
+
+.section-picktaxi {
+    padding: 4rem 2rem;
+    background-color: $bg-light;
+
+    .picktaxi-head {
+        text-align: center;
+        margin-bottom: 2rem;
+
+        h1 {
+            font-size: 2.5rem;
+            color: $text-dark;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            color: $text-light;
+            font-size: 1.1rem;
+        }
+    }
+
+    .filters-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        .category-filters {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+
+            button {
+                padding: 0.5rem 1rem;
+                border: 1px solid $border-color;
+                background: $card-bg;
+                border-radius: 25px;
+                cursor: pointer;
+                transition: all $transition-speed ease;
+                font-size: 0.9rem;
+                color: $text-light;
+                white-space: nowrap; 
+
+                &:hover {
+                    background: lighten($bg-light, 2%); 
+                }
+
+                &.active {
+                    background: $primary-color;
+                    color: white;
+                    border-color: $primary-color;
+                    box-shadow: 0 2px 5px rgba($primary-color, 0.3); 
+                }
+            }
+        }
+
+        .sort-section {
+            position: relative;
+            width: auto;
+
+            
+            &::after {
+                content: '';
+                position: absolute;
+                right: 1rem;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 0;
+                height: 0;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-top: 5px solid $text-light;
+                pointer-events: none; 
+            }
+
+            .sort-select {
+                padding: 0.5rem 2.5rem 0.5rem 1rem;
+                border: 1px solid $border-color;
+                border-radius: 25px;
+                background: $card-bg;
+                cursor: pointer;
+                font-size: 0.9rem;
+                color: $text-light;
+                min-width: 150px;
+                appearance: none; // Hide default select arrow
+                -webkit-appearance: none;
+                -moz-appearance: none;
+
+                &:focus {
+                    outline: none;
+                    border-color: $primary-color;
+                    box-shadow: 0 0 0 2px rgba($primary-color, 0.25);
+                }
+
+                option {
+                    padding: 0.5rem;
+                }
+            }
+        }
+    }
+
+    .additional-info {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: $text-light;
+        font-size: 0.9rem;
+    }
+
+    .vehicles-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 1rem;
+    }
+
+    .no-vehicles-found { 
+        text-align: center;
+        padding: 3rem;
+        font-size: 1.2rem;
+        color: $text-light;
+    }
+
+    .vehicle-card {
+        background: $card-bg;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform $transition-speed ease;
+
+        &:hover {
+            transform: translateY(-5px);
+        }
+
+        .vehicle-image-container {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform $transition-speed ease;
+            }
+
+            .vehicle-category {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                background: rgba(0, 0, 0, 0.6);
+                color: white;
+                padding: 0.3rem 0.8rem;
+                border-radius: 15px;
+                font-size: 0.8rem;
+                text-transform: capitalize;
+            }
+        }
+
+        .vehicle-details {
+            padding: 1.5rem;
+
+            h3 {
+                margin: 0 0 1rem;
+                color: $text-dark;
+                font-size: 1.2rem;
+            }
+
+            .vehicle-specs {
+                span {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    color: $text-light;
+                    margin-bottom: 0.5rem;
+                }
+
+                .price-details {
+                    .base-price {
+                        font-size: 1.2rem;
+                        color: $text-dark;
+                        display: flex;
+                        align-items: center;
+                        gap: 0.3rem;
+
+                        span {
+                            font-size: 0.8rem;
+                            color: $text-light;
+                            margin-left: 0.5rem;
+                        }
+                    }
+
+                    .extra-price {
+                        font-size: 0.9rem;
+                        color: $text-light;
+                        margin-top: 0.3rem;
+                        display: flex;
+                        align-items: center;
+                        gap: 0.2rem;
+                    }
+                }
+            }
+        }
+    }
+
+    .vehicles-carousel {
+        max-width: 350px; 
+        margin: 0 auto;
+
+        .carousel-slide {
+            padding: 1rem;
+        }
+
+        
+        .carousel .control-dots {
+            margin: 1rem 0;
+
+            .dot {
+                box-shadow: none;
+                background: $border-color;
+                opacity: 1;
+
+                &.selected {
+                    background: $primary-color;
+                }
+            }
+        }
+
+       
+        .carousel .control-arrow {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.8;
+
+            &:hover {
+                background: rgba(0, 0, 0, 0.5);
+            }
+
+           
+            &::before {
+                margin: 0;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
+}
+
+
+@media (max-width: $tablet-breakpoint) { 
+    .section-picktaxi {
+        padding: 2rem 1rem;
+
+        .filters-section {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 1.5rem;
+
+            .category-filters {
+                justify-content: center;
+                gap: 0.75rem;
+
+                button {
+                    padding: 0.75rem 1.25rem;
+                    font-size: 1rem;
+                    min-width: 80px;
+                }
+            }
+
+            .sort-section {
+                width: 100%;
+                margin-top: 0.5rem;
+
+                &::after {
+                    right: 1.25rem;
+                    border-width: 6px;
+                }
+
+                .sort-select {
+                    width: 100%;
+                    padding: 1rem 3rem 1rem 1.25rem;
+                    font-size: 1rem;
+                    background-color: white; 
+                    border-width: 2px; // Make border slightly thicker for better touch target
+
+                    &:active {
+                        background-color: darken($card-bg, 3%); // Subtle active state
+                    }
+                }
+            }
+        }
+
+        .vehicles-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+    }
+}
+
+@media (max-width: $mobile-breakpoint) { 
+    .section-picktaxi {
+        .filters-section {
+            .sort-section {
+                display: none; // Hides the sort dropdown on very small screens
+            }
+            .category-filters {
+                // Ensure category filters take full width and are centered if sort is hidden
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    }
+}
+
+// Visually hidden utility class for accessibility
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

@@ -1,0 +1,266 @@
+
+$transition-speed: 0.3s;
+$mobile-breakpoint: 768px; 
+
+.section-carousel {
+    width: 100%;
+    margin-bottom: 50px;
+    overflow: hidden; 
+}
+
+.carousel {
+    .carousel-item {
+        position: relative;
+    }
+
+    .carousel-img {
+        img {
+            object-fit: cover;
+            height: 80vh; 
+            width: 100%;
+            filter: brightness(70%); // Darken image for better text contrast
+            transition: transform $transition-speed ease;
+        }
+
+        .content-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 80%;
+            z-index: 2; 
+
+            .title {
+                font-size: 4em;
+                font-weight: 600;
+                color: white;
+                margin-bottom: 20px;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+                opacity: 0;
+                transform: translateY(20px);
+                animation: fadeInUp 0.5s forwards;
+            }
+
+            .subtitle {
+                font-size: 1.5em;
+                color: rgba(255, 255, 255, 0.9);
+                margin-top: 10px;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+                opacity: 0;
+                transform: translateY(20px);
+                animation: fadeInUp 0.5s 0.2s forwards;
+            }
+        }
+    }
+
+    
+    .custom-indicator {
+        width: 12px;
+        height: 12px;
+        background: rgba(255, 255, 255, 0.4);
+        display: inline-block;
+        margin: 0 8px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all $transition-speed ease;
+
+        &.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+    }
+
+    
+    .control-arrow {
+        opacity: 0;
+        transition: all $transition-speed ease;
+        padding: 20px !important; 
+
+        
+        &.carousel-prev:before,
+        &.carousel-next:before {
+            display: none;
+        }
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.4); 
+        }
+    }
+
+    // Show arrows on carousel hover 
+    &:hover {
+        .control-arrow {
+            opacity: 1;
+        }
+    }
+
+    // Mobile-specific styles applied when .carousel has .mobile-view class
+    &.mobile-view {
+        .carousel-img {
+            img {
+                height: 75vh; 
+                object-position: center; 
+            }
+
+            .content-overlay {
+                width: 100%;
+                height: 100%;
+                display: flex; 
+                align-items: center; 
+                justify-content: center;
+                transform: none; 
+                top: 0; // Position from top
+                left: 0; 
+                // background: linear-gradient(to top,
+                //     rgba(0, 0, 0, 0.8) 0%,
+                //     rgba(0, 0, 0, 0.5) 30%,
+                //     transparent 100%); 
+
+                .title,
+                .subtitle {
+                    // Reset animations for mobile content, if they conflict with mobile-content positioning
+                    animation: none;
+                    opacity: 1; // Always visible on mobile
+                    transform: none;
+                }
+
+                .mobile-content {
+                    width: 100%;
+                    padding: 20px;
+                    padding-bottom: 60px; 
+                    text-align: center; 
+
+                    max-width: 90%; 
+                    margin: 0 auto;
+
+                    .title {
+                        font-size: 2.5rem;
+                        margin-bottom: 10px;
+                        line-height: 1.2;
+                    }
+
+                    .subtitle {
+                        font-size: 1rem;
+                        margin-bottom: 20px;
+                        line-height: 1.4;
+                        opacity: 0.9;
+                    }
+
+                    .swipe-indicator {
+                        display: inline-flex;
+                        align-items: center;
+                        margin-top: 15px;
+                        opacity: 0.8;
+
+                        .swipe-text {
+                            color: white;
+                            font-size: 0.9rem;
+                            margin-right: 8px;
+                            text-transform: uppercase;
+                            letter-spacing: 1px;
+                        }
+
+                        .swipe-arrow {
+                            width: 24px;
+                            height: 24px;
+                            fill: white;
+                            animation: swipeHint 1.5s infinite;
+                        }
+                    }
+                }
+            }
+        }
+
+        .custom-indicator {
+            width: 8px;
+            height: 8px;
+            margin: 0 6px;
+            position: relative;
+            bottom: 40px; 
+        }
+
+    }
+}
+
+// Animation Keyframes
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes swipeHint {
+    0%, 100% {
+        transform: translateX(0);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translateX(10px);
+        opacity: 1;
+    }
+}
+
+
+@media only screen and (max-width: $mobile-breakpoint) { 
+    .carousel {
+        // This targets all carousels on screens <= mobile-breakpoint, regardless of .mobile-view class
+        .carousel-img {
+            img {
+                height: 83vh; 
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .carousel {
+        &.mobile-view { // Ensure this only applies when .mobile-view is also present
+            .carousel-img {
+                .content-overlay {
+                    .mobile-content {
+                        padding: 15px;
+                        padding-bottom: 50px;
+
+                        .title {
+                            font-size: 2.5rem;
+                        }
+                        .subtitle {
+                            font-size: 0.85rem;
+                            margin-bottom: 15px;
+                        }
+
+                        .swipe-indicator {
+                            margin-top: 10px;
+
+                            .swipe-text {
+                                font-size: 0.8rem;
+                            }
+
+                            .swipe-arrow {
+                                width: 20px;
+                                height: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .custom-indicator {
+                width: 6px;
+                height: 6px;
+                margin: 0 5px;
+                bottom: 35px;
+            }
+        }
+    }
+}

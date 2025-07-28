@@ -1,0 +1,115 @@
+@keyframes float-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes subtle-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.floater {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .float-button-wrapper {
+    animation: float-in 0.5s ease-out forwards;
+    position: relative;
+  }
+
+  .float-button {
+    border: none;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    transition: all 0.3s ease;
+    position: relative;
+    outline: none;
+    padding: 0;
+
+    &:hover {
+      transform: scale(1.1);
+      animation: subtle-bounce 1s ease infinite;
+    }
+
+    &.call-float {
+      background: linear-gradient(135deg, #4e54c8, #8f94fb);
+      color: white;
+      box-shadow: 0 4px 15px rgba(78, 84, 200, 0.4);
+
+      &:hover {
+        box-shadow: 0 6px 20px rgba(78, 84, 200, 0.6);
+      }
+    }
+
+    &.whats-float {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+
+      &:hover {
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+      }
+    }
+  }
+
+  // Add staggered animation delay for buttons
+  .float-button-wrapper:nth-child(1) {
+    animation-delay: 0s;
+  }
+  
+  .float-button-wrapper:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .floater {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    gap: 12px;
+
+    .float-button-wrapper {
+      animation: none !important; // Disable float-in animation
+
+      &:hover {
+        transform: none; // Disable hover transform
+      }
+    }
+
+    .float-button {
+      width: 50px; // Slightly smaller buttons on mobile
+      height: 50px;
+      font-size: 20px;
+
+      &:hover {
+        transform: none; 
+        animation: none !important; // Disable bounce animation
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+      }
+    }
+  }
+}

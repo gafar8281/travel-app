@@ -1,0 +1,147 @@
+$primary-color: #4242ff;
+$card-bg: #ffffff;
+$text-primary: #1f1f1f;
+$transition-speed: 0.3s;
+$spacing-unit: 1rem; 
+
+.section-services {
+    width: 100%;
+    padding: ($spacing-unit * 4) ($spacing-unit * 2); 
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    
+    @media (max-width: 768px) {
+        padding: ($spacing-unit * 2) $spacing-unit; 
+    }
+}
+
+.services-head {
+    text-align: center;
+    margin-bottom: ($spacing-unit * 3); 
+    
+    h1 {
+        font-size: 2.5rem;
+        color: $text-primary;
+        position: relative;
+        display: inline-block;
+        
+        &:after {
+            content: '';
+            position: absolute;
+            bottom: -($spacing-unit * 0.625); // Converted 10px to rem based on 16px default font-size or use variable like $spacing-unit * 0.625
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 3px;
+            background: $primary-color;
+            border-radius: 2px;
+        }
+        
+        @media (max-width: 768px) {
+            font-size: 2rem;
+        }
+    }
+}
+
+.services-collection {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: ($spacing-unit * 2); 
+    max-width: 1400px;
+    margin: 0 auto;
+    
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: ($spacing-unit * 1.5); 
+    }
+}
+
+.card {
+    background: $card-bg;
+    border-radius: 15px; 
+    overflow: hidden;
+    position: relative;
+    height: auto;
+    transition: transform $transition-speed ease, box-shadow $transition-speed ease;
+    
+    &:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        
+        .card-img img {
+            transform: scale(1.1);
+        }
+        
+        .card-more button {
+            // Using a color function is better than hardcoding darken
+            background: mix($primary-color, black, 85%); 
+            transform: translateY(-2px);
+        }
+    }
+}
+
+.card-img {
+    width: 100%;
+    height: 250px; // Keeping as fixed value for consistent image height
+    overflow: hidden;
+    position: relative;
+    
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 30%;
+        background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+    }
+    
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform $transition-speed ease;
+    }
+}
+
+.card-desc {
+    padding: ($spacing-unit * 1.5); 
+    
+    h1 {
+        font-size: 1.5rem;
+        color: $text-primary;
+        margin-bottom: $spacing-unit; 
+        font-weight: 600;
+    }
+    
+    h4 {
+        color: lighten($text-primary, 20%);
+        line-height: 1.6;
+        font-size: 0.95rem;
+        margin-bottom: $spacing-unit; 
+    }
+}
+
+.card-more {
+    padding: 0 ($spacing-unit * 1.5) ($spacing-unit * 1.5); 
+    
+    button {
+        width: 100%;
+        padding: $spacing-unit; 
+        border: none;
+        background: $primary-color;
+        color: white;
+        font-weight: 500;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all $transition-speed ease;
+        
+        @media (max-width: 768px) {
+            padding: ($spacing-unit * 0.8);
+        }
+    }
+}
+
+// Add smooth scroll behavior
+html {
+    scroll-behavior: smooth;
+}
