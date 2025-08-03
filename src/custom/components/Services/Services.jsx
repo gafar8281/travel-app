@@ -51,7 +51,10 @@ function Services() {
               <h4>{service.description}</h4>
             </div>
             <div className='card-more'>
-              <button>Know More</button>
+              <button
+                onClick={() => window.open('https://api.whatsapp.com/send?phone=+917736433575&text=Enquiring%20for%20available%20services%20-%20Allu%20Cabs%20Cochin', "_blank")}        
+              
+              >Know More</button>
             </div>
           </div>
         ))}
