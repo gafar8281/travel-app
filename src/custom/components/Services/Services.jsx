@@ -7,7 +7,7 @@ function Services() {
       imgSrc: "/assets/airport.jpg",
       altText: "Airport pickup service with a car", 
       title: "Airport Pickup",
-      description: "Someone coming from abroad? Well, we are there to safely take you to your destination. Sit back, Relax and Enjoy. No worries :)",
+      description: "Arriving from abroad? We re here to ensure a safe and smooth journey to your destination. Just sit back, relax, and enjoy—no worries at all!",
     },
     {
       imgSrc: "/assets/taxi.jpg",
